@@ -1,0 +1,46 @@
+<MenuScreen>:
+    BoxLayout:
+        Button:
+            text: 'Dummy Player'
+            on_press:
+                root.manager.current = 'dummy_selection'
+                root.manager.transition.direction = 'left'
+        Button:
+            text: 'Quit'
+            on_press:
+                app.stop()
+
+<DummySelectionScreen>:
+    name: 'dummy_selection'
+    GridLayout:
+        id: dummy_selection_grid
+        cols: 2
+        Button:
+            text: 'Back to menu'
+            on_press:
+                root.manager.current = 'menu'
+                root.manager.transition.direction = 'right'
+
+<Dummy>:
+    name: 'dummy'
+    GridLayout:
+        id: dummy_grid
+        cols: 2
+        Label:
+            text: 'Remaining cards:\nred: %s         blue: %s\nwhite: %s     green: %s' % (str(root.red_remaining_cards_len), str(root.blue_remaining_cards_len), str(root.white_remaining_cards_len), str(root.green_remaining_cards_len))
+        Label:
+            text: 'Crystals:\nred: %s         blue: %s\nwhite: %s     green: %s' % (str(root.red_crystals), str(root.blue_crystals), str(root.white_crystals), str(root.green_crystals))
+        Label:
+            text: 'Remaining cards : %s' % (root.deck_cards)
+        Label:
+            text: 'Played cards : %s' % (root.played_cards)
+        Button:
+            text: 'Play Turn'
+            on_press:
+                root.play_turn()
+        Button:
+            text: 'New Round'
+        Button:
+            text: 'Quit'
+            on_press:
+                root.manager.current = 'menu'
